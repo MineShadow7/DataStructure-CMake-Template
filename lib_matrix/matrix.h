@@ -19,7 +19,7 @@ class TDynamicVector {
  public:
   explicit TDynamicVector(size_t size = 1) : sz(size) {
     if (sz == 0)
-      throw out_of_range("Vector size should be greater than zero");
+      throw std::out_of_range("Vector size should be greater than zero");
     pMem = new T[sz]();
   }
 
