@@ -24,28 +24,47 @@ public:
 		data = new T[size];
 	}
 
+	explicit Stack(int _size) {
+		if (_size < 1) {
+			throw std::logic_error("Size must be greater than 0!");
+		}
+		size = _size;
+		top = -1;
+		data = new T[size];
+	}
+
 	~Stack() {
 		delete[] data;
 	}
 
+	T gettop() {
+		if (isEmpty() == true) {
+			throw std::logic_error("Empty Stack cannot return empty value");
+		}
+		return data[top];
+	}
+
 	void push(const T& val) {
 		if (!isFull()) {
-			top += 1;
+			top++;
 			data[top] = val;
 		}else
 		throw std::logic_error("Stack is full");
 	}
 
-	void pop() {
+	T pop() {
+		T val = data[top];
 		if (!isEmpty()) {
-			top -= 1;
+			top--;
+			return val;
 		}else
 		throw std::logic_error("Stack is empty");
+		
 	}
 
 	bool isFull() { return top == (size - 1); }
 
-	bool isEmpty() { return top == 1; }
+	bool isEmpty() { return top == -1; }
 
 	friend ostream& operator<< <T>(ostream& os, const Stack<T>& st);
 };
