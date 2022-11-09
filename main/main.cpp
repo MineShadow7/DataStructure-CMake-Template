@@ -1,20 +1,16 @@
 // Copyright 2022 Marina Usova
 
 #include <stdio.h>
-#include "../lib_stack/stack.h"
-#include "../lib_example/example.h"
+#include "../lib_list/list.h"
 #include "main.h"
 
 void main() {
-	Stack<int> st;
-	st.push(3);
-	st.push(9);
-	st.push(371);
-	std::cout << st;
-	int a = st.gettop();
-	cout << " " << a;
-	int b;
-	b = st.pop();
-	cout << " " << b;
+	CNode<int> node1(5);
+	CNode<int> node2(10);
+	node2.print();
 
+	node1.setnext(&node2);
+	node1.print();
+
+	node1.getnext()->print();
 }

@@ -3,8 +3,6 @@
 #ifndef LIB_STACK_QUEUE_H_
 #define LIB_STACK_QUEUE_H
 
-
-
 template <class T>
 class Queue {
 	T* data;
