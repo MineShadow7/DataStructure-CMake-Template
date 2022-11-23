@@ -1,7 +1,7 @@
 //Copyright 2022 Andrey Karagodin
 
-#ifndef LIB_STACK_LIST_H_
-#define LIB_STACK_LIST_H
+#ifndef LIB_LIST_LIST_H_
+#define LIB_LIST_LIST_H
 
 #include <iostream>
 #include <ostream>
@@ -123,4 +123,4 @@ public:
 	bool isEmpty() { return head == 0; }
 };
 
-#endif // LIB_STACK_STACK_H
+#endif // LIB_LIST_LIST_H

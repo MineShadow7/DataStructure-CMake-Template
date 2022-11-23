@@ -8,6 +8,7 @@ project(ProgrammingLabsWork_2022_2023)
 
 include(cmake/function.cmake)    # подхватываем функции, реализованные в файле function.cmake
                                  # для простоты мы объединили наборы команд для создания статической библиотеки
+add_subdirectory(lib_lstack)
 add_subdirectory(lib_polish) 
 add_subdirectory(lib_list) 
 add_subdirectory(lib_queue) 
