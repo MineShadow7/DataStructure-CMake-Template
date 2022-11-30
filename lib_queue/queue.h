@@ -1,7 +1,7 @@
 //Copyright 2022 Andrey Karagodin
 
-#ifndef LIB_STACK_QUEUE_H_
-#define LIB_STACK_QUEUE_H
+#ifndef LIB_STACK_LISTQUEUE_H_
+#define LIB_STACK_LISTQUEUE_H
 
 template <class T>
 class Queue {

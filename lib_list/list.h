@@ -1,7 +1,7 @@
 //Copyright 2022 Andrey Karagodin
 
 #ifndef LIB_STACK_LIST_H_
-#define LIB_STACK_LIST_H
+#define LIB_STACK_LIST_H_
 
 #include <iostream>
 #include <ostream>
@@ -31,10 +31,14 @@ public:
 		return next;
 	}
 
+	T getdata() {
+		return data;
+	}
+
 	friend class CList;
 };
 
-template<class T>
+template <class T>
 class CList {
 	CNode* head;
 	CNode* tail;
@@ -112,13 +116,21 @@ public:
 	};
 
 	void pop_back() {
-		CNode* headcpy = head;
-		while (headcpy->next != tail) {
-			CNode* todel = tail;
-			tail->next = headcpy;
-			//todo: доделать или спросить
+		CNode* tailcpy = tail;
+		tail = head;
+		while (tail->next != tailcpy) {
+			tail = tail->next;
 		}
+		delete tailcpy;
 	};
+
+	CNode* getlast() {
+		return tail;
+	}
+	
+	CNode* getfirst() {
+		return head;
+	}
 
 	bool isEmpty() { return head == 0; }
 };
