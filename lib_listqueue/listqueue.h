@@ -1,7 +1,7 @@
 //Copyright 2022 Andrey Karagodin
 
 #ifndef LIB_STACK_LISTQUEUE_H_
-#define LIB_STACK_LISTQUEUE_H
+#define LIB_STACK_LISTQUEUE_H_
 
 #include <iostream>
 #include <ostream>
@@ -58,4 +58,4 @@ public:
 
 	bool isEmpty() { return size == 0; }
 };
-#endif // LIB_STACK_STACK_H
+#endif // LIB_STACK_STACK_H_

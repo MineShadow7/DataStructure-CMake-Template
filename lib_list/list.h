@@ -5,10 +5,12 @@
 
 #include <iostream>
 #include <ostream>
+template <class T> class CNode;
+template <class T> class CList;
 
 using namespace std;
 
-template <class T>
+template <typename T>
 class CNode {
 	T data;
 	CNode* next;
@@ -35,10 +37,10 @@ public:
 		return data;
 	}
 
-	friend class CList;
+	friend class CList<T>;
 };
 
-template <class T>
+template <typename T>
 class CList {
 	CNode* head;
 	CNode* tail;
