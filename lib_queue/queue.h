@@ -68,4 +68,4 @@ public:
 
 	bool isEmpty() { return end < top; }
 };
-#endif // LIB_STACK_QUEUE_H
+#endif // LIB_QUEUE_QUEUE_H

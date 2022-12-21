@@ -135,4 +135,4 @@ public:
 	bool isEmpty() { return head == 0; }
 };
 
-#endif // LIB_STACK_STACK_H
+#endif // LIB_LIST_LIST_H
