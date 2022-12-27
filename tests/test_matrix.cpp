@@ -38,12 +38,6 @@ TEST(TDynamicMatrix, can_get_size) {
     EXPECT_EQ(matrix.size(), 10);
 }
 
-TEST(TDynamicMatrix, can_set_and_get_element) {
-    TDynamicMatrix<int> matrix(1);
-    ASSERT_NO_THROW(std::cin >> matrix);
-    ASSERT_NO_THROW(std::cout << matrix[0] << std::endl);
-}
-
 TEST(TDynamicMatrix, throws_when_set_element_with_negative_index) {
     TDynamicMatrix<int> matrix(1);
     ASSERT_ANY_THROW(matrix[-1]);

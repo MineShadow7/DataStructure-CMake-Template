@@ -1,13 +1,13 @@
 //Copyright 2022 Andrey Karagodin
 
-#ifndef LIB_STACK_LISTQUEUE_H_
-#define LIB_STACK_LISTQUEUE_H
+#ifndef LIB_QUEUE_QUEUE_H_
+#define LIB_QUEUE_QUEUE_H
 
 template <class T>
 class Queue {
 	T* data;
 	size_t size;
-		int top, end;
+	int top, end;
 public:
 
 	Queue() {

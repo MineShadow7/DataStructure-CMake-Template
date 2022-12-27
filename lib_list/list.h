@@ -1,7 +1,7 @@
 //Copyright 2022 Andrey Karagodin
 
-#ifndef LIB_STACK_LIST_H_
-#define LIB_STACK_LIST_H_
+#ifndef LIB_LIST_LIST_H_
+#define LIB_LIST_LIST_H_
 
 #include <iostream>
 #include <ostream>
@@ -29,112 +29,160 @@ public:
 		cout << data << " -> ";
 	}
 
-	CNode* getnext() {
-		return next;
-	}
-
-	T getdata() {
-		return data;
-	}
-
 	friend class CList<T>;
 };
 
 template <typename T>
 class CList {
-	CNode* head;
-	CNode* tail;
+	CNode<T>* head;
+	CNode<T>* tail;
+	size_t size;
 
 public:
 	CList() {
-		CNode* head = new CNode();
-		CNode* tail = new CNode();
-	}
-
-	size_t getsize() {
-		size_t len = 0;
-		CNode* head_copy = head;
-		while (head_copy != nullptr) {
-			head_copy = head_copy->next;
-			len += 1;
-		}
-		return len;
+		head = nullptr;
+		tail = nullptr;
+		size = 0;
 	}
 
 	void push_back(T val) {
-		CNode* newnode = new CNode(val);
-		if (!is_Empty()) {
-			CNode* newnode = new CNode(val);
-			tail->next = newnode;
-			tail = newnode;
-		}
-		else {
-			head->next = newnode;
-			tail->next = newnode;
+		CNode<T>* newnode = new CNode<T>(val);
+		if (isEmpty()) {
 			head = newnode;
 			tail = newnode;
 		}
+		else {
+			tail->next = newnode;
+			tail = newnode;
+		}
+		size++;
 	}
 
 	void push_front(T val) {
-		CNode* newnode = new CNode(val);
-		if (!isEmpty()) {
-			newnode->next = head;
-			head = newnode;
-		}
-		else {
-			head->next = newnode;
-			tail->next = newnode;
+		CNode<T>* newnode = new CNode<T>(val);
+		if (isEmpty()) {
 			head = newnode;
 			tail = newnode;
 		}
-	}
-
-	void insert(CNode* pos, T val) {
-		CNode* newnode = new CNode(val);
-		if (pos == nullptr) {
-			throw logic_error("Position cannot be null.")
-		}
 		else {
-			newnode->next = pos->next;
-			pos->next = newnode;
-			if (newnode->next == nullptr)
-				tail = newnode;
+			newnode->next = head;
+			head = newnode;
 		}
+		size++;
 	}
 
-	void pop_head() {
-		if (!isEmpty()) {
-			CNode* todel = head;
-			head = head->next;
-			delete todel;
-			if (isEmpty()) {
-				tail = 0;
+	void insert(int index, T val) {
+		size_t len = 0;
+		len = this->size;
+		if (index < 0 || index > len - 1)
+			throw("Can't insert in nullprt.");
+		else {
+			CNode<T>* _pos = head;
+			for (int i = 0; i < index; i++) {
+				while (_pos->next != tail) {
+					_pos = _pos->next;
+				}
+			}
+			CNode<T>* new_node = new CNode<T>(val);
+			new_node->next = _pos->next;
+			_pos->next = new_node;
+			if (new_node->next == nullptr) {
+				tail = new_node;
 			}
 		}
+		size++;
+	}
+
+	T pop_front() {
+		CNode<T>* copy = head;
+		T tempType = copy->data;
+		if (!(head == nullptr)) {
+			CNode<T>* toDel = head;
+			head = head->next;
+			delete toDel;
+			return tempType;
+		}
+		if (head == nullptr) {
+			tail = nullptr;
+			return tempType;
+		}
+		size--;
+	}
+
+	T pop_back() {
+		CNode<T>* copy = tail;
+		T temp = copy->data;
+		if (head != tail) {
+			CNode<T>* toDel = head;
+			while (toDel->next != tail) {
+				toDel = toDel->next;
+			}
+			delete tail;
+			tail = toDel;
+			return temp;
+		}
 		else {
-			throw logic_error("List is Empty.");
+			tail = nullptr;
+			head = nullptr;
+			return temp;
 		}
-	};
-
-	void pop_back() {
-		CNode* tailcpy = tail;
-		tail = head;
-		while (tail->next != tailcpy) {
-			tail = tail->next;
-		}
-		delete tailcpy;
-	};
-
-	CNode* getlast() {
-		return tail;
-	}
-	
-	CNode* getfirst() {
-		return head;
+		size--;
 	}
 
-	bool isEmpty() { return head == 0; }
+	void clear() {
+		while (head != nullptr)
+			pop_front();
+	}
+
+	void copy(const CList& obj) {
+		clear();
+		CNode<T>* tempNode = obj.head;
+		for (int i = 0; i < obj.size && tempNode->next != nullptr; i++)
+		{
+			push_back(tempNode->data);
+			tempNode = tempNode->next;
+		}
+		if (obj.size != 0 && tempNode == obj.tail) {
+			push_back(tempNode->data);
+		}
+		size = obj.size;
+	}
+
+	T remove(int index) {
+		size_t len = 0;
+		len = size;
+		if (index < 0 || index > len - 1){
+			throw("Unable to remove with index equals nullpointer.");
+		}
+		if (index == 0) {
+			size--;
+			return this->pop_back();
+		}
+		else if (index == size - 1) {
+			size--;
+			return this->pop_front();
+		}
+		else {
+			CNode<T>* _pos = head;
+			CNode<T>* _pos2 = head;
+			for (int i = 0; i < index - 1; i++) {
+				_pos2 = _pos2->next;
+			}
+			for (int i = 0; i < index; i++) {
+				_pos = _pos->next;
+			}
+			_pos2->next = _pos->next;
+			CNode<T>* toRet = _pos;
+			T tempType = toRet->data;
+			delete _pos;
+			size--;
+			return tempType;
+		}
+	}
+	int getSize() {
+		return size;
+	}
+	bool isEmpty() { return head == nullptr; }
 };
 
 #endif // LIB_LIST_LIST_H

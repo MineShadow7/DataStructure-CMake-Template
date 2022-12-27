@@ -1,16 +1,22 @@
-// Copyright 2022 Marina Usova
+// Copyright 2022 Andrey Karagodin
 
 #include <stdio.h>
-#include "../lib_list/list.h"
+#include <string>
+#include "../lib_polish/polish.h"
 #include "main.h"
 
 void main() {
-	CNode<int> node1(5);
-	CNode<int> node2(10);
-	node2.print();
-
-	node1.setnext(&node2);
-	node1.print();
-
-	node1.getnext()->print();
+	string expl;
+	int x = 1;
+	cout << "Available symbols: 'x', '+', '-', '*', '/', '(', ')'." << endl;
+	cout << "Input your formula (without spaces): ";
+	cin >> expl;
+	cout << endl;
+	cout << "Input x: ";
+	cin >> x;
+	Calculator cal;
+	float result;
+	result = cal.calculate(expl, 25);
+	cout << endl;
+	cout << "The result is: " << result;
 }
