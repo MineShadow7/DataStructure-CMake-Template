@@ -1,13 +1,22 @@
-// Copyright 2022 Marina Usova
+// Copyright 2022 Andrey Karagodin
 
 #include <stdio.h>
-#include "../lib_example/example.h"
+#include <string>
+#include "../lib_polish/polish.h"
+#include "main.h"
 
 void main() {
-  int a = 1, b = 4;
-  float result;
-
-  result = division(a, b);
-
-  printf("%d / %d = %.2f\n", a, b, result);
+	string expl;
+	int x = 1;
+	cout << "Available symbols: 'x', '+', '-', '*', '/', '(', ')'." << endl;
+	cout << "Input your formula (without spaces): ";
+	cin >> expl;
+	cout << endl;
+	cout << "Input x: ";
+	cin >> x;
+	Calculator cal;
+	float result;
+	result = cal.calculate(expl, 25);
+	cout << endl;
+	cout << "The result is: " << result;
 }

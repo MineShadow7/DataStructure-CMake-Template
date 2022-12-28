@@ -8,7 +8,13 @@ project(ProgrammingLabsWork_2022_2023)
 
 include(cmake/function.cmake)    # подхватываем функции, реализованные в файле function.cmake
                                  # для простоты мы объединили наборы команд для создания статической библиотеки
-								 # и для создания исполняемого проекта в отдельные функции
+add_subdirectory(lib_priorityqueue)
+add_subdirectory(lib_listqueue)
+add_subdirectory(lib_lstack)
+add_subdirectory(lib_polish) 
+add_subdirectory(lib_list) 
+add_subdirectory(lib_queue) 
+add_subdirectory(lib_stack) 								 # и для создания исполняемого проекта в отдельные функции
 add_subdirectory(lib_example2) 
 add_subdirectory(lib_example)    # подключаем дополнительный CMakeLists.txt из подкаталога с именем lib_example
 add_subdirectory(lib_matrix)     # подключаем дополнительный CMakeLists.txt из подкаталога с именем lib_matrix
